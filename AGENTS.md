@@ -12,6 +12,12 @@ Persian, RTL, mobile-first installment-car catalog. The current app is a Vite Re
 - No backend, authentication, database, or infrastructure is in scope.
 - Do not implement speculative features or the entire app during a task scoped to engineering guidance.
 
+## Component and logic organization
+
+- Apply separation of concerns to keep code clean and readable: components handle presentation, while application and interaction logic lives in custom hooks.
+- Define only one React component per file. Never define a component inside another component; move it to its own file instead.
+- Extract repeated logic into a separate reusable custom hook and share it across the components that need it.
+
 ## Skill discovery and selection
 
 - Local skills live in `.agents/skills/<name>/SKILL.md`. Read the focused skill when its description matches the task; combine only skills that add distinct guidance.
