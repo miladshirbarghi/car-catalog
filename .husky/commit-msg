@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+message_file="$1"
+header=$(sed -n '1p' "$message_file")
+
+if ! printf '%s\n' "$header" | grep -Eq '^(build|base|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|merge)(\([^()]+\))?!?: .+'; then
+	cat >&2 <<'EOF'
+Invalid commit message.
+Use: <type>(optional-scope): <subject>
+Allowed types: build, base, chore, ci, docs, feat, fix, perf, refactor, revert, style, test, merge
+EOF
+	exit 1
+fi
