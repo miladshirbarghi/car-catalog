@@ -1,21 +1,37 @@
-# Decisions
+# Decisions | تصمیم‌ها
 
-## Keep the starter stack
+## فارسی
 
-The repository already has React, TypeScript, Vite, MUI with Emotion, RTL theme setup, and IRANSansX fonts. Keep those conventions while implementing the catalog; there is no reason to replace the initialized app or add another UI stack.
+### پشته و محدوده
 
-## Keep catalog architecture proportional
+پروژه از React، TypeScript، Vite، MUI و Emotion با تنظیمات RTL و فونت IRANSansX استفاده می‌کند. کاتالوگ سمت کاربر با داده آزمایشی محلی کار می‌کند؛ سرور، احراز هویت و پایگاه داده در محدوده فعلی نیستند.
 
-The assignment is a small client-side catalog with deterministic mock data. Start with focused feature modules and derived UI state. Add a global store, persistence, URL synchronization, or extra abstraction only when a concrete requirement makes it useful.
+### وضعیت کاتالوگ
 
-## Keep engineering guidance local and focused
+منطق تعامل در hookها نگهداری می‌شود. جست‌وجو، مرتب‌سازی و علاقه‌مندی‌ها در وضعیت محلی هستند؛ علاقه‌مندی‌ها با خروج از صفحه کاتالوگ یا بارگذاری مجدد باقی نمی‌مانند. حداقل و حداکثر قیمت در پارامترهای URL نگهداری می‌شوند تا پیوند بازه قیمت قابل اشتراک باشد.
 
-No project `AGENTS.md` or skills were present. Caveman and Graphify were not found in the inspected local skill/CLI locations, so this repository uses its own concise communication conventions and a Graphify-optional navigation workflow. The latter falls back to source inspection and does not claim graph results.
+### بارگذاری و ایمپورت‌ها
 
-## Record existing tooling gaps without expanding this phase
+صفحه اصلی کاتالوگ در بارگذاری اولیه قرار دارد؛ صفحات جزئیات و مسیر نامعتبر با `React.lazy` و یک وضعیت بارگذاری مشترک دریافت می‌شوند. تصویر اولین کارت به‌صورت eager و بقیه تصاویر کارت‌ها به‌صورت lazy بارگذاری می‌شوند. ایمپورت از ریشه `@mui/material` با ESLint ممنوع است و از مسیرهای مستقیم یا زیرمسیر مربوط، مانند `@mui/material/styles`، استفاده می‌شود.
 
-The TypeScript configs do not set `strict: true`. `.prettierrc` names `@trivago/prettier-plugin-sort-imports`, but neither Prettier nor that plugin is declared in `package.json` or the lockfile; there is also no format-check script. This phase documents those facts and does not install packages or change compiler/formatter configuration.
+### بررسی کیفیت و راهنمای محلی
 
-## Current implementation status
+`pnpm check` بررسی نوع‌ها، lint، قالب‌بندی و بیلد را اجرا می‌کند و تست‌ها جداگانه اجرا می‌شوند. تنظیمات TypeScript گزینه `strict: true` را فعال نکرده‌اند. راهنمای مخزن و skillهای محلی در [AGENTS.md](AGENTS.md) و `.agents/skills` قرار دارند؛ Graphify اختیاری است و در نبود آن کد مستقیماً بررسی می‌شود.
 
-The application is still a placeholder screen. The catalog behavior, mock cars, search, filters, favorites, details, loading/error states, responsive catalog UI, and tests have not been implemented as part of this engineering-guidance phase.
+## English
+
+### Stack and scope
+
+The project uses React, TypeScript, Vite, MUI, and Emotion with RTL configuration and IRANSansX fonts. The client-side catalog uses local mock data; a server, authentication, and database are outside the current scope.
+
+### Catalog state
+
+Interaction logic lives in hooks. Search, sorting, and favorites use local state; favorites do not persist after leaving the catalog page or reloading. Minimum and maximum prices are stored in URL parameters so a price range can be shared.
+
+### Loading and imports
+
+The catalog page is part of the initial load; the details and unknown-route pages use `React.lazy` with a shared loading state. The first card image loads eagerly and the remaining card images load lazily. ESLint disallows imports from the `@mui/material` root; use direct paths or the appropriate subpath, such as `@mui/material/styles`.
+
+### Quality checks and local guidance
+
+`pnpm check` runs type checking, linting, formatting checks, and the build; tests run separately. The TypeScript configuration does not enable `strict: true`. Repository guidance and local skills are in [AGENTS.md](AGENTS.md) and `.agents/skills`; Graphify is optional and source inspection is the fallback.
