@@ -1,4 +1,7 @@
-import { ButtonBase, styled } from '@mui/material'
+import { layoutBreakpoints } from '@styles/breakpoints'
+import { catalogColors } from '@styles/pallete'
+import { rowBetween } from '@styles/sharedStyles'
+import { ButtonBase, TextField, styled } from '@mui/material'
 import { motion } from 'motion/react'
 import { Link } from 'react-router'
 import heroImage from '@assets/images/1.png'
@@ -10,11 +13,9 @@ export const CatalogContainer = styled('main')`
 `
 
 export const CatalogHeaderRoot = styled('header')`
+  ${rowBetween};
   height: 96px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  @media (max-width: 650px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     height: 72px;
   }
 `
@@ -23,13 +24,13 @@ export const Brand = styled('a')`
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #172c30;
+  color: ${catalogColors.brandInk};
   text-decoration: none;
   font-size: 18px;
   font-weight: 800;
   line-height: 1.2;
   & svg {
-    color: #b18151;
+    color: ${catalogColors.brandMark};
   }
   & small {
     display: block;
@@ -37,17 +38,17 @@ export const Brand = styled('a')`
     letter-spacing: 0.19em;
   }
   &:focus-visible {
-    outline: 3px solid #29509d;
+    outline: 3px solid ${catalogColors.focus};
     outline-offset: 3px;
   }
 `
 
 export const HeaderNote = styled('span')`
-  color: #68776d;
+  color: ${catalogColors.headerNote};
   font-size: 12px;
-  border-right: 1px solid #d5dbd2;
-  padding-right: 18px;
-  @media (max-width: 650px) {
+  border-inline-start: 1px solid ${catalogColors.headerBorder};
+  padding-inline-start: 18px;
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     display: none;
   }
 `
@@ -62,13 +63,13 @@ export const Intro = styled('section')`
   align-items: end;
   padding: clamp(32px, 5vw, 70px);
   border-radius: 22px;
-  color: #fff;
+  color: ${catalogColors.surface};
   background:
     linear-gradient(
       90deg,
-      rgba(12, 28, 25, 0.38) 0%,
-      rgba(12, 28, 25, 0.55) 43%,
-      rgba(12, 28, 25, 0.96) 100%
+      ${catalogColors.heroOverlayLight} 0%,
+      ${catalogColors.heroOverlayMedium} 43%,
+      ${catalogColors.heroOverlayDark} 100%
     ),
     url(${heroImage}) center 55% / cover;
   & h1 {
@@ -79,7 +80,7 @@ export const Intro = styled('section')`
     font-weight: 800;
   }
   & h1 em {
-    color: #d9bb93;
+    color: ${catalogColors.heroAccent};
     font-style: normal;
     font-weight: 400;
   }
@@ -88,7 +89,7 @@ export const Intro = styled('section')`
     max-width: 620px;
   }
   & > div:first-of-type > p:first-of-type {
-    color: #e9c99c;
+    color: ${catalogColors.heroLabel};
   }
   & a {
     display: inline-flex;
@@ -97,23 +98,24 @@ export const Intro = styled('section')`
     margin-top: 30px;
     padding: 14px 20px;
     border-radius: 10px;
-    background: #e2c69e;
-    color: #19352c;
+    background: ${catalogColors.heroButton};
+    color: ${catalogColors.heroButtonText};
     text-decoration: none;
     font-size: 13px;
     font-weight: 700;
   }
   & a:hover {
-    background: #f0dbbd;
+    background: ${catalogColors.heroButtonHover};
   }
   & a:focus-visible {
-    outline: 3px solid white;
+    outline: 3px solid ${catalogColors.surface};
     outline-offset: 4px;
   }
-  @media (max-width: 650px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     min-height: 420px;
     padding: 32px 24px;
     border-radius: 18px;
+    /* @noflip */
     background-position: 40% center;
   }
 `
@@ -122,27 +124,27 @@ export const SectionLabel = styled('p')`
   display: flex;
   align-items: center;
   gap: 9px;
-  color: #987044;
+  color: ${catalogColors.accentLabel};
   font-size: 12px;
   font-weight: 700;
   margin: 0 0 20px;
   & span {
     width: 24px;
     height: 2px;
-    background: #c59a67;
+    background: ${catalogColors.accentLine};
   }
 `
 
 export const CatalogDescription = styled('p')`
-  color: #e0e7e4;
+  color: ${catalogColors.heroDescription};
   font-size: 14px;
   line-height: 2;
   margin: 20px 0 0;
 `
 
 export const IntroSide = styled('div')`
-  text-align: left;
-  color: #d6dfdb;
+  text-align: start;
+  color: ${catalogColors.heroSideText};
   direction: ltr;
   padding-bottom: 8px;
   & > span {
@@ -151,20 +153,20 @@ export const IntroSide = styled('div')`
   }
   & strong {
     display: block;
-    color: #fff;
+    color: ${catalogColors.surface};
     font: 300 clamp(22px, 2.7vw, 38px)/1.4 sans-serif;
     margin: 8px 0;
   }
   & i {
     font-style: normal;
-    color: #d9bb93;
+    color: ${catalogColors.heroAccent};
   }
   & p {
     direction: rtl;
     font-size: 12px;
     line-height: 1.9;
   }
-  @media (max-width: 650px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     display: none;
   }
 `
@@ -188,97 +190,95 @@ export const CollectionHeading = styled('div')`
     font-size: clamp(24px, 2.3vw, 32px);
   }
   & h2 small {
-    color: #778783;
+    color: ${catalogColors.countText};
     font-size: 12px;
     font-weight: 400;
-    margin-right: 10px;
+    margin-inline-start: 10px;
   }
 `
 
 export const Controls = styled('div')`
   display: flex;
-  flex-wrap: wrap;
-  align-items: end;
+  align-items: start;
   gap: 12px;
   padding: 20px;
-  background: #fff;
-  border: 1px solid #e7e9e1;
+  background: ${catalogColors.surface};
+  border: 1px solid ${catalogColors.controlsBorder};
   border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(36, 50, 36, 0.05);
-  @media (max-width: 650px) {
+  box-shadow: 0 12px 40px ${catalogColors.shadowControls};
+  & .MuiOutlinedInput-root {
+    background: ${catalogColors.fieldBackground};
+    border-radius: 10px;
+  }
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     padding: 14px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    & .MuiOutlinedInput-root {
+      min-height: 48px;
+      font-size: 16px;
+    }
   }
 `
 
 export const PriceControls = styled('div')`
   display: flex;
-  flex: 2 1 480px;
-  flex-wrap: wrap;
+  flex: 3 1 0;
+  min-width: 0;
   gap: 12px;
   & > .MuiFormControl-root {
-    flex: 1 1 130px;
+    flex: 1 1 0;
     min-width: 0;
   }
-  & .MuiOutlinedInput-root {
-    background: #f8faf8;
-    border-radius: 10px;
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    & > .MuiFormControl-root:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.narrow)} {
+    grid-template-columns: minmax(0, 1fr);
   }
 `
 
-export const SearchRoot = styled('div')`
-  height: 46px;
-  flex: 1 1 190px;
-  border: 1px solid #e3e9e4;
-  background: #f8faf8;
-  border-radius: 10px;
-  color: #71837c;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 14px;
-  & .MuiInputBase-root {
-    flex: 1;
-    min-width: 0;
-  }
-  & input {
-    border: 0;
-    outline: 0;
-    width: 100%;
-    min-width: 0;
-    background: transparent;
-    font-size: 12px;
-    color: #19332f;
-  }
-  &:focus-within {
-    outline: 2px solid #29509d;
-    outline-offset: 2px;
+export const SearchRoot = styled(TextField)`
+  flex: 1.3 1 0;
+  min-width: 0;
+  & .MuiInputAdornment-root {
+    color: ${catalogColors.searchIcon};
   }
 `
 
 export const FilterButton = styled(ButtonBase)`
-  min-height: 46px;
-  border: 1px solid #e3e9e4;
-  background: #fff;
+  min-height: 40px;
+  border: 1px solid ${catalogColors.fieldBorder};
+  background: ${catalogColors.surface};
   border-radius: 10px;
-  color: #405c53;
+  color: ${catalogColors.filterText};
   padding: 0 14px;
   cursor: pointer;
   font-size: 12px;
   white-space: nowrap;
   & > svg {
-    margin-left: 6px;
+    margin-inline-end: 6px;
   }
   & b {
-    margin-right: 4px;
+    margin-inline-start: 4px;
   }
   &[aria-pressed='true'] {
-    background: #193c33;
-    color: white;
-    border-color: #193c33;
+    background: ${catalogColors.accentDark};
+    color: ${catalogColors.surface};
+    border-color: ${catalogColors.accentDark};
   }
   &:focus-visible {
-    outline: 3px solid #29509d;
+    outline: 3px solid ${catalogColors.focus};
     outline-offset: 3px;
+  }
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
+    min-height: 48px;
+    justify-content: center;
   }
 `
 
@@ -287,10 +287,10 @@ export const CarGrid = styled('div')`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
   align-items: stretch;
-  @media (max-width: 1000px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.catalog)} {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  @media (max-width: 650px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     grid-template-columns: 1fr;
     gap: 18px;
   }
@@ -299,10 +299,10 @@ export const CarGrid = styled('div')`
 export const CardRoot = styled(motion.article)`
   min-width: 0;
   overflow: hidden;
-  background: #fff;
-  border: 1px solid #e8eae3;
+  background: ${catalogColors.surface};
+  border: 1px solid ${catalogColors.cardBorder};
   border-radius: 16px;
-  box-shadow: 0 10px 30px #1b332d0a;
+  box-shadow: 0 10px 30px ${catalogColors.shadowCard};
   transition:
     box-shadow 0.3s,
     border-color 0.3s,
@@ -310,8 +310,8 @@ export const CardRoot = styled(motion.article)`
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     &:hover {
       transform: translateY(-4px) !important;
-      border-color: #d6dcdf;
-      box-shadow: 0 16px 35px #1f2f4917;
+      border-color: ${catalogColors.cardHoverBorder};
+      box-shadow: 0 16px 35px ${catalogColors.shadowCardHover};
     }
   }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
@@ -325,7 +325,7 @@ export const CardImageWrap = styled('div')`
   position: relative;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  background: #e8ebea;
+  background: ${catalogColors.imageBackground};
 `
 
 export const CardImage = styled('img')`
@@ -340,7 +340,7 @@ export const CardFallback = styled('div')`
   height: 100%;
   display: grid;
   place-items: center;
-  color: #687783;
+  color: ${catalogColors.fallbackText};
   font-size: 13px;
 `
 
@@ -349,9 +349,9 @@ export const CardYear = styled('span')`
   top: 16px;
   height: 38px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 2px 10px #1f2f4914;
-  right: 16px;
+  background: ${catalogColors.surfaceOverlay};
+  box-shadow: 0 2px 10px ${catalogColors.shadowBadge};
+  inset-inline-start: 16px;
   display: grid;
   place-items: center;
   padding: 0 13px;
@@ -364,30 +364,33 @@ export const FavoriteButton = styled(ButtonBase)`
   top: 16px;
   height: 38px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 2px 10px #1f2f4914;
-  left: 16px;
+  background: ${catalogColors.surfaceOverlay};
+  box-shadow: 0 2px 10px ${catalogColors.shadowBadge};
+  inset-inline-end: 16px;
   width: 40px;
   border: 0;
-  color: #34465a;
+  color: ${catalogColors.iconText};
   display: grid;
   place-items: center;
   cursor: pointer;
+  & > span {
+    display: flex;
+  }
   &[aria-pressed='true'] {
-    color: #b45e53;
+    color: ${catalogColors.favoriteActive};
   }
   &:active {
     transform: scale(0.97);
   }
   &:focus-visible {
-    outline: 3px solid #29509d;
+    outline: 3px solid ${catalogColors.focus};
     outline-offset: 3px;
   }
 `
 
 export const CardBody = styled('div')`
   padding: 24px;
-  @media (max-width: 650px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     padding: 20px;
   }
 `
@@ -398,7 +401,7 @@ export const CardIdentity = styled('div')`
   align-items: start;
   min-height: 65px;
   & h2 {
-    text-align: right;
+    text-align: end;
     margin: 0;
     font: 700 21px/1.35 sans-serif;
     letter-spacing: -0.035em;
@@ -410,13 +413,13 @@ export const CardIdentity = styled('div')`
 `
 
 export const Eyebrow = styled('p')`
-  color: #8c9a8e;
+  color: ${catalogColors.eyebrowText};
   font-size: 11px;
   margin: 0 0 8px;
 `
 
 export const CardNumber = styled('span')`
-  color: #c4cbd0;
+  color: ${catalogColors.cardNumber};
   font: 400 12px sans-serif;
 `
 
@@ -425,15 +428,15 @@ export const CardSpecs = styled('div')`
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   padding: 16px 0;
-  border-top: 1px solid #edf0ed;
-  border-bottom: 1px solid #edf0ed;
+  border-top: 1px solid ${catalogColors.cardDivider};
+  border-bottom: 1px solid ${catalogColors.cardDivider};
   & div {
     display: flex;
     flex-direction: column;
     gap: 7px;
   }
   & span {
-    color: #929ba2;
+    color: ${catalogColors.cardLabel};
     font-size: 11px;
   }
   & strong {
@@ -451,7 +454,7 @@ export const CardPrice = styled('div')`
   flex-direction: column;
   gap: 7px;
   & > span {
-    color: #929ba2;
+    color: ${catalogColors.cardLabel};
     font-size: 11px;
   }
   & small {
@@ -484,10 +487,10 @@ export const DetailsLink = styled(Link)`
   gap: 12px;
   min-height: 42px;
   padding: 0 13px;
-  border: 1px solid #dbe6dc;
+  border: 1px solid ${catalogColors.linkBorder};
   border-radius: 9px;
-  background: #eff4ef;
-  color: #214e3d;
+  background: ${catalogColors.linkBackground};
+  color: ${catalogColors.linkText};
   text-decoration: none;
   font-size: 11px;
   font-weight: 700;
@@ -499,19 +502,19 @@ export const DetailsLink = styled(Link)`
     transform: scale(0.97);
   }
   &:focus-visible {
-    outline: 3px solid #29509d;
+    outline: 3px solid ${catalogColors.focus};
     outline-offset: 3px;
   }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     &:hover {
-      background: #193c33;
-      border-color: #193c33;
-      color: white;
+      background: ${catalogColors.accentDark};
+      border-color: ${catalogColors.accentDark};
+      color: ${catalogColors.surface};
     }
   }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     &:hover svg {
-      transform: translateX(-3px);
+      translate: -3px 0;
     }
   }
 `
@@ -519,28 +522,28 @@ export const DetailsLink = styled(Link)`
 export const EmptyState = styled('div')`
   text-align: center;
   padding: 70px 20px;
-  border: 1px dashed #d8ded5;
+  border: 1px dashed ${catalogColors.emptyBorder};
   border-radius: 16px;
-  background: #fff;
-  color: #6c7883;
+  background: ${catalogColors.surface};
+  color: ${catalogColors.mutedText};
   & strong {
-    color: #1f2f49;
+    color: ${catalogColors.inkBlue};
   }
 `
 
 export const CatalogEnd = styled('footer')`
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #dedfdd;
+  border-top: 1px solid ${catalogColors.divider};
   margin-top: 80px;
   padding: 28px 0;
-  color: #8b949a;
+  color: ${catalogColors.footerText};
   font-size: 12px;
   & span {
-    color: #1f2f49;
+    color: ${catalogColors.inkBlue};
     font-weight: 700;
   }
-  @media (max-width: 650px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     gap: 12px;
   }
 `
@@ -553,10 +556,10 @@ export const DetailPage = styled('main')`
 
 export const BackLink = styled(Link)`
   &:focus-visible {
-    outline: 3px solid #29509d;
+    outline: 3px solid ${catalogColors.focus};
     outline-offset: 3px;
   }
-  color: #315848;
+  color: ${catalogColors.backLink};
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
@@ -571,18 +574,18 @@ export const Detail = styled('article')`
   align-items: center;
   margin-top: 36px;
   padding: clamp(20px, 3vw, 36px);
-  background: #fff;
-  border: 1px solid #e8eae3;
+  background: ${catalogColors.surface};
+  border: 1px solid ${catalogColors.cardBorder};
   border-radius: 24px;
-  box-shadow: 0 18px 50px #1b332d0a;
+  box-shadow: 0 18px 50px ${catalogColors.shadowCard};
   & img {
     width: 100%;
     height: auto;
     border-radius: 20px;
-    box-shadow: 0 18px 45px #1b332d18;
+    box-shadow: 0 18px 45px ${catalogColors.shadowImage};
   }
   & h1 {
-    text-align: right;
+    text-align: end;
     font-family: sans-serif;
     font-size: clamp(28px, 3vw, 42px);
     margin: 0 0 24px;
@@ -595,16 +598,16 @@ export const Detail = styled('article')`
     justify-content: space-between;
     gap: 16px;
     padding: 16px 0;
-    border-bottom: 1px solid #dedfdd;
+    border-bottom: 1px solid ${catalogColors.divider};
   }
   & dt {
-    color: #6c7883;
+    color: ${catalogColors.mutedText};
   }
   & dd {
     margin: 0;
     font-weight: 700;
   }
-  @media (max-width: 650px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     grid-template-columns: 1fr;
     gap: 28px;
   }
@@ -617,7 +620,7 @@ export const DetailDescription = styled('section')`
   }
   & p {
     margin: 0;
-    color: #6c7883;
+    color: ${catalogColors.mutedText};
     line-height: 2;
   }
 `

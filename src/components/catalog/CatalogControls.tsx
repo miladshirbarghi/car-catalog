@@ -1,4 +1,4 @@
-import { Box, InputBase, TextField } from '@mui/material'
+import { Box, InputAdornment, TextField } from '@mui/material'
 import type { useCatalog } from '@hooks/useCatalog'
 import { Heart, Search } from 'lucide-react'
 import {
@@ -33,16 +33,23 @@ export default function CatalogControls({
   const { ref: sortRef, ...sort } = register('sort')
   return (
     <Controls>
-      <SearchRoot>
-        <Search size={20} aria-hidden='true' />
-        <InputBase
-          type='search'
-          placeholder='جستجوی خودرو'
-          inputProps={{ 'aria-label': 'جستجوی خودرو' }}
-          inputRef={ref}
-          {...query}
-        />
-      </SearchRoot>
+      <SearchRoot
+        id='query'
+        type='search'
+        label='جستجوی خودرو'
+        size='small'
+        slotProps={{
+          input: {
+            endAdornment: (
+              <InputAdornment position='end'>
+                <Search size={20} aria-hidden='true' />
+              </InputAdornment>
+            ),
+          },
+        }}
+        inputRef={ref}
+        {...query}
+      />
       <FilterButton
         type='button'
         aria-pressed={favoritesOnly}
@@ -58,7 +65,7 @@ export default function CatalogControls({
       <PriceControls>
         <TextField
           id='min-price'
-          label='حداقل قیمت (تومان)'
+          label='حداقل قیمت'
           size='small'
           inputRef={minPriceRef}
           {...minPrice}
@@ -68,7 +75,7 @@ export default function CatalogControls({
         />
         <TextField
           id='max-price'
-          label='حداکثر قیمت (تومان)'
+          label='حداکثر قیمت'
           size='small'
           inputRef={maxPriceRef}
           {...maxPrice}
@@ -86,9 +93,15 @@ export default function CatalogControls({
           {...sort}
           slotProps={{ select: { native: true } }}
         >
-          <option value='default'>پیش‌فرض</option>
-          <option value='ascending'>ارزان‌ترین</option>
-          <option value='descending'>گران‌ترین</option>
+          <Box component='option' value='default'>
+            پیش‌فرض
+          </Box>
+          <Box component='option' value='ascending'>
+            ارزان‌ترین
+          </Box>
+          <Box component='option' value='descending'>
+            گران‌ترین
+          </Box>
         </TextField>
       </PriceControls>
     </Controls>

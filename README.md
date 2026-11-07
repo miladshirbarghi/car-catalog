@@ -13,8 +13,11 @@ A Persian, RTL, mobile-first catalog for cars sold through installments. The cur
 
 - React 19, TypeScript 6, and Vite 8
 - MUI 9 with Emotion and the React Compiler
-- Persian IRANSansX fonts and RTL theme setup
+- Persian IRANSansX fonts and MUI RTL styling with Emotion and Stylis
 - pnpm lockfile
+
+Catalog color tokens live in `src/styles/pallete.ts`; shared layout thresholds
+live in `src/styles/breakpoints.ts` and are applied through MUI breakpoints.
 
 ## Development
 

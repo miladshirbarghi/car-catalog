@@ -1,3 +1,5 @@
+import { layoutBreakpoints } from '@styles/breakpoints'
+import { catalogColors } from '@styles/pallete'
 import { styled } from '@mui/material'
 import { Link } from 'react-router'
 
@@ -12,15 +14,15 @@ export const BackLink = styled(Link)`
   align-items: center;
   gap: 10px;
   min-height: 44px;
-  color: #49645a;
+  color: ${catalogColors.backLinkMuted};
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
   &:hover {
-    color: #183e32;
+    color: ${catalogColors.linkHover};
   }
   &:focus-visible {
-    outline: 3px solid #29509d;
+    outline: 3px solid ${catalogColors.focus};
     outline-offset: 3px;
   }
 `
@@ -33,11 +35,11 @@ export const DetailHero = styled('div')`
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   overflow: hidden;
-  border: 1px solid #e4e8e0;
+  border: 1px solid ${catalogColors.detailBorder};
   border-radius: 24px;
-  background: #fff;
-  box-shadow: 0 18px 50px #1b332d0c;
-  @media (max-width: 800px) {
+  background: ${catalogColors.surface};
+  box-shadow: 0 18px 50px ${catalogColors.shadowHero};
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.detail)} {
     grid-template-columns: 1fr;
   }
 `
@@ -45,7 +47,7 @@ export const DetailHero = styled('div')`
 export const DetailImage = styled('div')`
   position: relative;
   min-height: 390px;
-  background: #e8eeea;
+  background: ${catalogColors.detailImageBackground};
   & img {
     display: block;
     width: 100%;
@@ -59,20 +61,20 @@ export const DetailImage = styled('div')`
     min-height: 390px;
     display: grid;
     place-items: center;
-    color: #60766b;
+    color: ${catalogColors.imagePlaceholderText};
   }
   & > span {
     position: absolute;
     top: 20px;
-    right: 20px;
+    inset-inline-start: 20px;
     padding: 9px 15px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.94);
-    color: #284c3e;
+    background: ${catalogColors.surfaceOverlay};
+    color: ${catalogColors.badgeText};
     font-size: 12px;
     font-weight: 700;
   }
-  @media (max-width: 800px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.detail)} {
     min-height: 0;
     aspect-ratio: 4 / 3;
     & > div {
@@ -88,15 +90,15 @@ export const DetailSummary = styled('div')`
   padding: clamp(24px, 4vw, 52px);
   & h1 {
     margin: 0;
-    text-align: right;
-    color: #19352d;
+    text-align: end;
+    color: ${catalogColors.detailTitle};
     font: 700 clamp(32px, 3.4vw, 48px)/1.2 sans-serif;
     letter-spacing: -0.04em;
     overflow-wrap: anywhere;
   }
   & > p {
     margin: 12px 0 0;
-    color: #77877d;
+    color: ${catalogColors.detailSubtitle};
     font-size: 13px;
     line-height: 2;
   }
@@ -107,14 +109,14 @@ export const DetailEyebrow = styled('div')`
   align-items: center;
   gap: 9px;
   margin-bottom: 22px;
-  color: #987044;
+  color: ${catalogColors.accentLabel};
   font-size: 12px;
   font-weight: 700;
   &::before {
     content: '';
     width: 24px;
     height: 2px;
-    background: #c59a67;
+    background: ${catalogColors.accentLine};
   }
 `
 
@@ -122,17 +124,17 @@ export const PricePanel = styled('div')`
   margin-top: 32px;
   padding: 22px;
   border-radius: 15px;
-  background: #f1f5ef;
-  border: 1px solid #e4ebe2;
+  background: ${catalogColors.priceBackground};
+  border: 1px solid ${catalogColors.priceBorder};
   & span {
     display: block;
-    color: #6d8073;
+    color: ${catalogColors.priceLabel};
     font-size: 12px;
   }
   & strong {
     display: block;
     margin-top: 10px;
-    color: #193c33;
+    color: ${catalogColors.accentDark};
     font-size: clamp(23px, 2.2vw, 30px);
     line-height: 1.5;
   }
@@ -147,7 +149,7 @@ export const DetailSections = styled('div')`
   grid-template-columns: 1.2fr 0.8fr;
   gap: 24px;
   margin-top: 24px;
-  @media (max-width: 800px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.detail)} {
     grid-template-columns: 1fr;
   }
 `
@@ -155,17 +157,17 @@ export const DetailSections = styled('div')`
 export const DetailSection = styled('section')`
   min-width: 0;
   padding: clamp(24px, 3vw, 36px);
-  background: #fff;
-  border: 1px solid #e8eae3;
+  background: ${catalogColors.surface};
+  border: 1px solid ${catalogColors.cardBorder};
   border-radius: 20px;
   & h2 {
     margin: 0;
-    color: #213e33;
+    color: ${catalogColors.sectionTitle};
     font-size: 19px;
   }
   & > p {
     margin: 16px 0 0;
-    color: #65776e;
+    color: ${catalogColors.descriptionText};
     font-size: 14px;
     line-height: 2.2;
   }
@@ -180,20 +182,20 @@ export const SpecsList = styled('dl')`
     min-width: 0;
     padding: 18px;
     border-radius: 12px;
-    background: #f7f8f5;
+    background: ${catalogColors.specBackground};
   }
   & dt {
-    color: #7d8c81;
+    color: ${catalogColors.specLabel};
     font-size: 12px;
   }
   & dd {
     margin: 12px 0 0;
-    color: #263f35;
+    color: ${catalogColors.specText};
     font-size: 14px;
     font-weight: 700;
     line-height: 1.8;
   }
-  @media (max-width: 480px) {
+  ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.compact)} {
     grid-template-columns: 1fr;
     & div {
       display: flex;
@@ -203,7 +205,7 @@ export const SpecsList = styled('dl')`
     }
     & dd {
       margin: 0;
-      text-align: left;
+      text-align: end;
     }
   }
 `

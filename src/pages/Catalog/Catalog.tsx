@@ -1,3 +1,4 @@
+import { Box } from '@mui/material'
 import CarCard from '@components/card/CarCard'
 import CatalogControls from '@components/catalog/CatalogControls'
 import CatalogHeader from '@components/catalog/CatalogHeader'
@@ -28,15 +29,15 @@ export default function Catalog() {
       <CatalogIntro />
       <Collection id='collection'>
         <CollectionHeading>
-          <div>
+          <Box>
             <SectionLabel>مجموعه خودروها</SectionLabel>
-            <h2>
+            <Box component='h2'>
               خودروها{' '}
-              <small>
+              <Box component='small'>
                 {new Intl.NumberFormat('fa-IR').format(cars.length)} خودرو
-              </small>
-            </h2>
-          </div>
+              </Box>
+            </Box>
+          </Box>
           <CatalogControls
             form={form}
             favoritesOnly={favoritesOnly}
@@ -61,8 +62,8 @@ export default function Catalog() {
         )}
       </Collection>
       <CatalogEnd>
-        <span>اتوگالری</span>
-        <span>انتخابی برای مسیر پیش رو</span>
+        <Box component='span'>اتوگالری</Box>
+        <Box component='span'>انتخابی برای مسیر پیش رو</Box>
       </CatalogEnd>
     </CatalogContainer>
   )

@@ -1,5 +1,6 @@
 import { carData } from '@mock/data/carData'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router'
 import { useForm, useWatch } from 'react-hook-form'
 import {
   catalogResolver,
@@ -8,15 +9,36 @@ import {
 } from '@validations/catalog.validation'
 import type { CatalogFields } from '@validations/catalog.validation'
 
+function priceFromUrl(value: string | null) {
+  const price = normalizeDigits(value ?? '')
+  return /^\d+$/.test(price) ? price : ''
+}
+
 export function useCatalog() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const urlMinPrice = priceFromUrl(searchParams.get('minPrice'))
+  const urlMaxPrice = priceFromUrl(searchParams.get('maxPrice'))
   const form = useForm<CatalogFields>({
-    defaultValues: { query: '', minPrice: '', maxPrice: '', sort: 'default' },
+    defaultValues: { query: '', minPrice: urlMinPrice, maxPrice: urlMaxPrice, sort: 'default' },
     resolver: catalogResolver,
     mode: 'onChange',
   })
   const { query, minPrice, maxPrice, sort } = useWatch({
     control: form.control,
   }) as CatalogFields
+  const { setValue } = form
+  useEffect(() => {
+    setValue('minPrice', urlMinPrice, { shouldValidate: true })
+    setValue('maxPrice', urlMaxPrice, { shouldValidate: true })
+  }, [setValue, urlMinPrice, urlMaxPrice])
+
+  function updatePriceInUrl(name: 'minPrice' | 'maxPrice', value: string) {
+    const next = new URLSearchParams(searchParams)
+    if (value) next.set(name, normalizeDigits(value))
+    else next.delete(name)
+    setSearchParams(next, { replace: true, preventScrollReset: true })
+  }
+
   const [favorites, setFavorites] = useState<number[]>([])
   const [favoritesOnly, setFavoritesOnly] = useState(false)
   const validPrices = catalogSchema.isValidSync({
@@ -55,6 +77,7 @@ export function useCatalog() {
 
   return {
     form,
+    updatePriceInUrl,
     favorites,
     favoritesOnly,
     setFavoritesOnly,
