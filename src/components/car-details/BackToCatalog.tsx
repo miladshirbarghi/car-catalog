@@ -1,4 +1,4 @@
-import { BackLink } from '@components/catalog/catalog.styled'
+import { BackLink } from './car-details.styled'
 import { ArrowRight } from 'lucide-react'
 
 export function BackToCatalog() {

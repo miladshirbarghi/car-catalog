@@ -11,7 +11,7 @@ export default function CatalogHeader() {
           اتوگالری<Box component='small'>AUTO GALLERY</Box>
         </Box>
       </Brand>
-      <HeaderNote>انتخابی برای مسیر پیش رو</HeaderNote>
+      <HeaderNote>مجموعه‌ای برای سلیقه شما</HeaderNote>
     </CatalogHeaderRoot>
   )
 }

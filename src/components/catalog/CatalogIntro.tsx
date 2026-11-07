@@ -1,4 +1,5 @@
 import { Box } from '@mui/material'
+import { ArrowDownLeft } from 'lucide-react'
 import {
   CatalogDescription,
   Intro,
@@ -18,13 +19,16 @@ export default function CatalogIntro() {
           <Box component='em'>اینجا منتظر است.</Box>
         </Box>
         <CatalogDescription>
-          مجموعه‌ای منتخب از خودروها، برای تجربه‌ای متفاوت در هر مسیر.
+          مسیر انتخاب خودروی دلخواهتان را از میان مجموعه ما آغاز کنید.
         </CatalogDescription>
+        <a href='#collection'>
+          مشاهده خودروها <ArrowDownLeft size={18} aria-hidden='true' />
+        </a>
       </Box>
       <IntroSide>
-        <Box component='span'>CURATED COLLECTION</Box>
+        <Box component='span'>THE AUTO COLLECTION</Box>
         <Box component='strong'>
-          AUTO <Box component='i'>/</Box> GALLERY
+          DRIVE <Box component='i'>/</Box> DIFFERENT
         </Box>
         <Box component='p'>
           با دقت انتخاب شده،

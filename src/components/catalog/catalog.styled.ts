@@ -4,13 +4,13 @@ import { Link } from 'react-router'
 import heroImage from '@assets/images/1.png'
 
 export const CatalogContainer = styled('main')`
-  max-width: 1600px;
+  max-width: 1536px;
   margin: auto;
-  padding: 0 clamp(18px, 5vw, 72px) 80px;
+  padding: 0 clamp(18px, 5vw, 72px) 24px;
 `
 
 export const CatalogHeaderRoot = styled('header')`
-  height: 88px;
+  height: 96px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,8 +43,10 @@ export const Brand = styled('a')`
 `
 
 export const HeaderNote = styled('span')`
-  color: #777f87;
+  color: #68776d;
   font-size: 12px;
+  border-right: 1px solid #d5dbd2;
+  padding-right: 18px;
   @media (max-width: 650px) {
     display: none;
   }
@@ -54,18 +56,23 @@ export const Intro = styled('section')`
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  min-height: 410px;
+  min-height: 480px;
   display: flex;
   justify-content: space-between;
   align-items: end;
   padding: clamp(32px, 5vw, 70px);
-  border-radius: 24px;
+  border-radius: 22px;
   color: #fff;
   background:
-    linear-gradient(90deg, rgba(15, 36, 38, 0.34), rgba(15, 36, 38, 0.94)),
+    linear-gradient(
+      90deg,
+      rgba(12, 28, 25, 0.38) 0%,
+      rgba(12, 28, 25, 0.55) 43%,
+      rgba(12, 28, 25, 0.96) 100%
+    ),
     url(${heroImage}) center 55% / cover;
   & h1 {
-    font-size: clamp(32px, 4.4vw, 62px);
+    font-size: clamp(34px, 4.4vw, 62px);
     line-height: 1.55;
     letter-spacing: -0.04em;
     margin: 0;
@@ -83,8 +90,28 @@ export const Intro = styled('section')`
   & > div:first-of-type > p:first-of-type {
     color: #e9c99c;
   }
+  & a {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    background: #e2c69e;
+    color: #19352c;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  & a:hover {
+    background: #f0dbbd;
+  }
+  & a:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+  }
   @media (max-width: 650px) {
-    min-height: 390px;
+    min-height: 420px;
     padding: 32px 24px;
     border-radius: 18px;
     background-position: 40% center;
@@ -125,7 +152,7 @@ export const IntroSide = styled('div')`
   & strong {
     display: block;
     color: #fff;
-    font: 300 42px/1.4 sans-serif;
+    font: 300 clamp(22px, 2.7vw, 38px)/1.4 sans-serif;
     margin: 8px 0;
   }
   & i {
@@ -144,6 +171,7 @@ export const IntroSide = styled('div')`
 
 export const Collection = styled('section')`
   padding-top: clamp(52px, 6vw, 88px);
+  scroll-margin-top: 24px;
 `
 
 export const CollectionHeading = styled('div')`
@@ -174,9 +202,9 @@ export const Controls = styled('div')`
   gap: 12px;
   padding: 20px;
   background: #fff;
-  border: 1px solid #e7ebe7;
-  border-radius: 18px;
-  box-shadow: 0 12px 35px rgba(27, 51, 45, 0.04);
+  border: 1px solid #e7e9e1;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(36, 50, 36, 0.05);
   @media (max-width: 650px) {
     padding: 14px;
   }
@@ -272,8 +300,8 @@ export const CardRoot = styled(motion.article)`
   min-width: 0;
   overflow: hidden;
   background: #fff;
-  border: 1px solid #e7ebe7;
-  border-radius: 18px;
+  border: 1px solid #e8eae3;
+  border-radius: 16px;
   box-shadow: 0 10px 30px #1b332d0a;
   transition:
     box-shadow 0.3s,
@@ -320,7 +348,7 @@ export const CardYear = styled('span')`
   position: absolute;
   top: 16px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 2px 10px #1f2f4914;
   right: 16px;
@@ -335,7 +363,7 @@ export const FavoriteButton = styled(ButtonBase)`
   position: absolute;
   top: 16px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 2px 10px #1f2f4914;
   left: 16px;
@@ -358,7 +386,7 @@ export const FavoriteButton = styled(ButtonBase)`
 `
 
 export const CardBody = styled('div')`
-  padding: 23px;
+  padding: 24px;
   @media (max-width: 650px) {
     padding: 20px;
   }
@@ -382,9 +410,9 @@ export const CardIdentity = styled('div')`
 `
 
 export const Eyebrow = styled('p')`
-  color: #929ba2;
+  color: #8c9a8e;
   font-size: 11px;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
 `
 
 export const CardNumber = styled('span')`
@@ -456,9 +484,9 @@ export const DetailsLink = styled(Link)`
   gap: 12px;
   min-height: 42px;
   padding: 0 13px;
-  border: 1px solid #dce6df;
-  border-radius: 10px;
-  background: #f1f6f2;
+  border: 1px solid #dbe6dc;
+  border-radius: 9px;
+  background: #eff4ef;
   color: #214e3d;
   text-decoration: none;
   font-size: 11px;
@@ -491,6 +519,9 @@ export const DetailsLink = styled(Link)`
 export const EmptyState = styled('div')`
   text-align: center;
   padding: 70px 20px;
+  border: 1px dashed #d8ded5;
+  border-radius: 16px;
+  background: #fff;
   color: #6c7883;
   & strong {
     color: #1f2f49;
@@ -525,8 +556,9 @@ export const BackLink = styled(Link)`
     outline: 3px solid #29509d;
     outline-offset: 3px;
   }
-  color: #29509d;
+  color: #315848;
   text-decoration: none;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -535,9 +567,14 @@ export const BackLink = styled(Link)`
 export const Detail = styled('article')`
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 48px;
+  gap: clamp(28px, 5vw, 64px);
   align-items: center;
-  margin-top: 45px;
+  margin-top: 36px;
+  padding: clamp(20px, 3vw, 36px);
+  background: #fff;
+  border: 1px solid #e8eae3;
+  border-radius: 24px;
+  box-shadow: 0 18px 50px #1b332d0a;
   & img {
     width: 100%;
     height: auto;
@@ -547,6 +584,11 @@ export const Detail = styled('article')`
   & h1 {
     text-align: right;
     font-family: sans-serif;
+    font-size: clamp(28px, 3vw, 42px);
+    margin: 0 0 24px;
+  }
+  & dl {
+    margin: 0;
   }
   & dl div {
     display: flex;

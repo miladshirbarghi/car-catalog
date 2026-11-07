@@ -7,6 +7,7 @@ import {
   CatalogContainer,
   Collection,
   CollectionHeading,
+  CatalogEnd,
   EmptyState,
   SectionLabel,
 } from '@components/catalog/catalog.styled'
@@ -25,7 +26,7 @@ export default function Catalog() {
     <CatalogContainer>
       <CatalogHeader />
       <CatalogIntro />
-      <Collection>
+      <Collection id='collection'>
         <CollectionHeading>
           <div>
             <SectionLabel>مجموعه خودروها</SectionLabel>
@@ -59,6 +60,10 @@ export default function Catalog() {
           <EmptyState role='status'>خودرویی با این مشخصات پیدا نشد.</EmptyState>
         )}
       </Collection>
+      <CatalogEnd>
+        <span>اتوگالری</span>
+        <span>انتخابی برای مسیر پیش رو</span>
+      </CatalogEnd>
     </CatalogContainer>
   )
 }
