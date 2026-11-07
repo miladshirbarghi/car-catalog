@@ -1,5 +1,6 @@
 import { Box } from '@mui/material'
 import type { Car } from '@app-types/car.type'
+import { CardSpecs } from '@components/catalog/catalog.styled'
 
 type Props = {
   car: Car
@@ -9,7 +10,7 @@ const number = new Intl.NumberFormat('fa-IR')
 
 export default function CarCardSpecs({ car }: Props) {
   return (
-    <Box component='div' className='car-card__specs'>
+    <CardSpecs>
       <Box component='div'>
         <Box component='span'>کارکرد</Box>
         <Box component='strong'>
@@ -20,6 +21,6 @@ export default function CarCardSpecs({ car }: Props) {
         <Box component='span'>وضعیت بدنه</Box>
         <Box component='strong'>{car.accidentHistory}</Box>
       </Box>
-    </Box>
+    </CardSpecs>
   )
 }

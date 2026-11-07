@@ -1,10 +1,10 @@
-import { Box } from '@mui/material'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
 import CarCardImage from './CarCardImage'
 import CarCardIdentity from './CarCardIdentity'
 import CarCardSpecs from './CarCardSpecs'
 import CarCardFooter from './CarCardFooter'
 import type { Car } from '@app-types/car.type'
+import { CardBody, CardRoot } from '@components/catalog/catalog.styled'
 
 type Props = {
   car: Car
@@ -22,9 +22,7 @@ export default function CarCard({
   const reducedMotion = useReducedMotion()
 
   return (
-    <Box
-      component={motion.article}
-      className='car-card'
+    <CardRoot
       initial={reducedMotion ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
@@ -36,11 +34,11 @@ export default function CarCard({
         onToggleFavorite={onToggleFavorite}
         eager={eager}
       />
-      <Box component='div' className='car-card__body'>
+      <CardBody>
         <CarCardIdentity car={car} />
         <CarCardSpecs car={car} />
         <CarCardFooter car={car} />
-      </Box>
-    </Box>
+      </CardBody>
+    </CardRoot>
   )
 }

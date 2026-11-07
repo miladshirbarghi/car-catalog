@@ -1,21 +1,27 @@
 import { Box } from '@mui/material'
+import {
+  CatalogDescription,
+  Intro,
+  IntroSide,
+  SectionLabel,
+} from './catalog.styled'
 export default function CatalogIntro() {
   return (
-    <Box component='section' className='catalog__intro'>
+    <Intro>
       <Box component='div'>
-        <Box component='p' className='section-label'>
+        <SectionLabel>
           <Box component='span' /> مجموعه خودروها
-        </Box>
+        </SectionLabel>
         <Box component='h1'>
           خودروی بعدی شما،
           <Box component='br' />
           <Box component='em'>اینجا منتظر است.</Box>
         </Box>
-        <Box component='p' className='catalog__description'>
+        <CatalogDescription>
           مجموعه‌ای منتخب از خودروها، برای تجربه‌ای متفاوت در هر مسیر.
-        </Box>
+        </CatalogDescription>
       </Box>
-      <Box component='div' className='catalog__intro-side'>
+      <IntroSide>
         <Box component='span'>THE COLLECTION</Box>
         <Box component='strong'>
           01 <Box component='i'>/</Box> 10
@@ -25,7 +31,7 @@ export default function CatalogIntro() {
           <Box component='br' />
           برای سلیقه شما.
         </Box>
-      </Box>
-    </Box>
+      </IntroSide>
+    </Intro>
   )
 }

@@ -1,3 +1,4 @@
+import { DetailDescription } from '@components/catalog/catalog.styled'
 import { Box } from '@mui/material'
 
 type CarDescriptionProps = {
@@ -6,9 +7,9 @@ type CarDescriptionProps = {
 
 export function CarDescription({ description }: CarDescriptionProps) {
   return (
-    <Box component='section' className='detail__description'>
+    <DetailDescription>
       <Box component='h2'>توضیحات</Box>
       <Box component='p'>{description}</Box>
-    </Box>
+    </DetailDescription>
   )
 }

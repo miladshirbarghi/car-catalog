@@ -1,8 +1,15 @@
-import { Box, ButtonBase } from '@mui/material'
+import { Box } from '@mui/material'
 import { motion, useReducedMotion } from 'motion/react'
 import { Heart } from 'lucide-react'
 import type { Car } from '@app-types/car.type'
 import { useCarImage } from '@hooks/useCarImage'
+import {
+  CardFallback,
+  CardImage,
+  CardImageWrap,
+  CardYear,
+  FavoriteButton,
+} from '@components/catalog/catalog.styled'
 
 type Props = {
   car: Car
@@ -23,20 +30,16 @@ export default function CarCardImage({
   const reducedMotion = useReducedMotion()
 
   return (
-    <Box component='div' className='car-card__image-wrap'>
+    <CardImageWrap>
       {imageFailed ? (
-        <Box
-          component='div'
-          className='car-card__fallback'
+        <CardFallback
           role='img'
           aria-label={`تصویر ${car.brand} ${car.model} در دسترس نیست`}
         >
           تصویر خودرو در دسترس نیست
-        </Box>
+        </CardFallback>
       ) : (
-        <Box
-          component='img'
-          className='car-card__image'
+        <CardImage
           src={car.image}
           alt={`${car.brand} ${car.model} مدل ${car.year}`}
           width='1448'
@@ -45,11 +48,8 @@ export default function CarCardImage({
           onError={handleImageError}
         />
       )}
-      <Box component='span' className='car-card__year'>
-        {number.format(car.year)}
-      </Box>
-      <ButtonBase
-        className={`favorite ${isFavorite ? 'favorite--active' : ''}`}
+      <CardYear>{number.format(car.year)}</CardYear>
+      <FavoriteButton
         type='button'
         aria-label={`${isFavorite ? 'حذف از' : 'افزودن به'} علاقه‌مندی‌ها: ${car.brand} ${car.model}`}
         aria-pressed={isFavorite}
@@ -69,7 +69,7 @@ export default function CarCardImage({
             fill={isFavorite ? 'currentColor' : 'none'}
           />
         </Box>
-      </ButtonBase>
-    </Box>
+      </FavoriteButton>
+    </CardImageWrap>
   )
 }

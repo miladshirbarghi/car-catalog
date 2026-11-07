@@ -1,11 +1,10 @@
-import { Link as MuiLink } from '@mui/material'
+import { BackLink } from '@components/catalog/catalog.styled'
 import { ArrowRight } from 'lucide-react'
-import { Link } from 'react-router'
 
 export function BackToCatalog() {
   return (
-    <MuiLink component={Link} className='back-link' to='/'>
+    <BackLink to='/'>
       <ArrowRight size={18} aria-hidden='true' /> بازگشت به مجموعه
-    </MuiLink>
+    </BackLink>
   )
 }

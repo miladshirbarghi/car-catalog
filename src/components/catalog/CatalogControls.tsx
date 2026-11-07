@@ -1,5 +1,6 @@
-import { Box, ButtonBase, InputBase } from '@mui/material'
+import { Box, InputBase } from '@mui/material'
 import { Heart, Search } from 'lucide-react'
+import { Controls, FilterButton, SearchRoot } from './catalog.styled'
 
 type Props = {
   query: string
@@ -17,8 +18,8 @@ export default function CatalogControls({
   favoritesCount,
 }: Props) {
   return (
-    <Box className='catalog__controls'>
-      <Box className='search'>
+    <Controls>
+      <SearchRoot>
         <Search size={20} aria-hidden='true' />
         <InputBase
           type='search'
@@ -27,9 +28,8 @@ export default function CatalogControls({
           value={query}
           onChange={event => onQueryChange(event.target.value)}
         />
-      </Box>
-      <ButtonBase
-        className={`filter ${favoritesOnly ? 'filter--active' : ''}`}
+      </SearchRoot>
+      <FilterButton
         type='button'
         aria-pressed={favoritesOnly}
         onClick={() => onFavoritesOnlyChange(!favoritesOnly)}
@@ -40,7 +40,7 @@ export default function CatalogControls({
             {new Intl.NumberFormat('fa-IR').format(favoritesCount)}
           </Box>
         )}
-      </ButtonBase>
-    </Box>
+      </FilterButton>
+    </Controls>
   )
 }
