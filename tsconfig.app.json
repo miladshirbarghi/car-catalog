@@ -15,7 +15,8 @@
       "@providers/*": ["./src/providers/*"],
       "@styles/*": ["./src/styles/*"],
       "@app-types/*": ["./src/types/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@validations/*": ["./src/validations/*"]
     },
     "types": ["vite/client"],
     "allowArbitraryExtensions": true,

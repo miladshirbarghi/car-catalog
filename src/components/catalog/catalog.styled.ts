@@ -1,11 +1,12 @@
 import { ButtonBase, styled } from '@mui/material'
 import { motion } from 'motion/react'
 import { Link } from 'react-router'
+import heroImage from '@assets/images/1.png'
 
 export const CatalogContainer = styled('main')`
   max-width: 1600px;
   margin: auto;
-  padding: 0 clamp(20px, 5vw, 80px);
+  padding: 0 clamp(18px, 5vw, 72px) 80px;
 `
 
 export const CatalogHeaderRoot = styled('header')`
@@ -13,7 +14,6 @@ export const CatalogHeaderRoot = styled('header')`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #dedfdd;
   @media (max-width: 650px) {
     height: 72px;
   }
@@ -23,11 +23,14 @@ export const Brand = styled('a')`
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #1f2f49;
+  color: #172c30;
   text-decoration: none;
   font-size: 18px;
   font-weight: 800;
   line-height: 1.2;
+  & svg {
+    color: #b18151;
+  }
   & small {
     display: block;
     font: 600 8px/1.6 sans-serif;
@@ -48,10 +51,19 @@ export const HeaderNote = styled('span')`
 `
 
 export const Intro = styled('section')`
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 410px;
   display: flex;
   justify-content: space-between;
   align-items: end;
-  padding: clamp(58px, 8vw, 116px) 0 clamp(62px, 8vw, 110px);
+  padding: clamp(32px, 5vw, 70px);
+  border-radius: 24px;
+  color: #fff;
+  background:
+    linear-gradient(90deg, rgba(15, 36, 38, 0.34), rgba(15, 36, 38, 0.94)),
+    url(${heroImage}) center 55% / cover;
   & h1 {
     font-size: clamp(32px, 4.4vw, 62px);
     line-height: 1.55;
@@ -60,12 +72,22 @@ export const Intro = styled('section')`
     font-weight: 800;
   }
   & h1 em {
-    color: #85909a;
+    color: #d9bb93;
     font-style: normal;
     font-weight: 400;
   }
+  & > div:first-of-type {
+    position: relative;
+    max-width: 620px;
+  }
+  & > div:first-of-type > p:first-of-type {
+    color: #e9c99c;
+  }
   @media (max-width: 650px) {
-    padding: 58px 0 68px;
+    min-height: 390px;
+    padding: 32px 24px;
+    border-radius: 18px;
+    background-position: 40% center;
   }
 `
 
@@ -73,19 +95,19 @@ export const SectionLabel = styled('p')`
   display: flex;
   align-items: center;
   gap: 9px;
-  color: #6d7a89;
+  color: #987044;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 0 20px;
   & span {
     width: 24px;
-    height: 1px;
-    background: #bd8f59;
+    height: 2px;
+    background: #c59a67;
   }
 `
 
 export const CatalogDescription = styled('p')`
-  color: #6c7883;
+  color: #e0e7e4;
   font-size: 14px;
   line-height: 2;
   margin: 20px 0 0;
@@ -93,7 +115,7 @@ export const CatalogDescription = styled('p')`
 
 export const IntroSide = styled('div')`
   text-align: left;
-  color: #8a949c;
+  color: #d6dfdb;
   direction: ltr;
   padding-bottom: 8px;
   & > span {
@@ -102,13 +124,13 @@ export const IntroSide = styled('div')`
   }
   & strong {
     display: block;
-    color: #26374e;
+    color: #fff;
     font: 300 42px/1.4 sans-serif;
     margin: 8px 0;
   }
   & i {
     font-style: normal;
-    color: #c2c8cb;
+    color: #d9bb93;
   }
   & p {
     direction: rtl;
@@ -121,100 +143,110 @@ export const IntroSide = styled('div')`
 `
 
 export const Collection = styled('section')`
-  border-top: 1px solid #dcdedc;
-  padding-top: 38px;
+  padding-top: clamp(52px, 6vw, 88px);
 `
 
 export const CollectionHeading = styled('div')`
   display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 24px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 26px;
   margin-bottom: 28px;
   & p {
     margin-bottom: 8px;
   }
   & h2 {
     margin: 0;
-    font-size: 24px;
+    font-size: clamp(24px, 2.3vw, 32px);
   }
   & h2 small {
-    color: #8b949a;
+    color: #778783;
     font-size: 12px;
     font-weight: 400;
     margin-right: 10px;
-  }
-  @media (max-width: 650px) {
-    align-items: stretch;
-    flex-direction: column;
   }
 `
 
 export const Controls = styled('div')`
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e7ebe7;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(27, 51, 45, 0.04);
   @media (max-width: 650px) {
-    width: 100%;
+    padding: 14px;
+  }
+`
+
+export const PriceControls = styled('div')`
+  display: flex;
+  flex: 2 1 480px;
+  flex-wrap: wrap;
+  gap: 12px;
+  & > .MuiFormControl-root {
+    flex: 1 1 130px;
+    min-width: 0;
+  }
+  & .MuiOutlinedInput-root {
+    background: #f8faf8;
+    border-radius: 10px;
   }
 `
 
 export const SearchRoot = styled('div')`
   height: 46px;
-  border: 1px solid #dedfdd;
-  background: #fff;
-  border-radius: 8px;
-  color: #566574;
+  flex: 1 1 190px;
+  border: 1px solid #e3e9e4;
+  background: #f8faf8;
+  border-radius: 10px;
+  color: #71837c;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 0 14px;
+  & .MuiInputBase-root {
+    flex: 1;
+    min-width: 0;
+  }
   & input {
     border: 0;
     outline: 0;
-    width: 150px;
+    width: 100%;
     min-width: 0;
     background: transparent;
     font-size: 12px;
-    color: #1f2f49;
+    color: #19332f;
   }
   &:focus-within {
     outline: 2px solid #29509d;
     outline-offset: 2px;
   }
-  @media (max-width: 650px) {
-    flex: 1;
-    min-width: 0;
-  }
-  @media (max-width: 650px) {
-    & input {
-      width: 100%;
-    }
-  }
 `
 
 export const FilterButton = styled(ButtonBase)`
-  height: 46px;
-  border: 1px solid #dedfdd;
+  min-height: 46px;
+  border: 1px solid #e3e9e4;
   background: #fff;
-  border-radius: 8px;
-  color: #566574;
+  border-radius: 10px;
+  color: #405c53;
   padding: 0 14px;
   cursor: pointer;
   font-size: 12px;
   white-space: nowrap;
   & > svg {
-    margin-left: 5px;
+    margin-left: 6px;
   }
   & b {
     margin-right: 4px;
   }
   &[aria-pressed='true'] {
-    background: #1f2f49;
+    background: #193c33;
     color: white;
-    border-color: #1f2f49;
-  }
-  &:active {
-    transform: scale(0.97);
+    border-color: #193c33;
   }
   &:focus-visible {
     outline: 3px solid #29509d;
@@ -225,7 +257,7 @@ export const FilterButton = styled(ButtonBase)`
 export const CarGrid = styled('div')`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: 22px;
   align-items: stretch;
   @media (max-width: 1000px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -240,9 +272,9 @@ export const CardRoot = styled(motion.article)`
   min-width: 0;
   overflow: hidden;
   background: #fff;
-  border: 1px solid #e7e9e8;
-  border-radius: 14px;
-  box-shadow: 0 6px 24px #1f2f4908;
+  border: 1px solid #e7ebe7;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px #1b332d0a;
   transition:
     box-shadow 0.3s,
     border-color 0.3s,
@@ -288,8 +320,8 @@ export const CardYear = styled('span')`
   position: absolute;
   top: 16px;
   height: 38px;
-  border-radius: 8px;
-  background: #fff;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 2px 10px #1f2f4914;
   right: 16px;
   display: grid;
@@ -303,8 +335,8 @@ export const FavoriteButton = styled(ButtonBase)`
   position: absolute;
   top: 16px;
   height: 38px;
-  border-radius: 8px;
-  background: #fff;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 2px 10px #1f2f4914;
   left: 16px;
   width: 40px;
@@ -364,8 +396,9 @@ export const CardSpecs = styled('div')`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  padding: 19px 0;
-  border-bottom: 1px solid #edf0ef;
+  padding: 16px 0;
+  border-top: 1px solid #edf0ed;
+  border-bottom: 1px solid #edf0ed;
   & div {
     display: flex;
     flex-direction: column;
@@ -423,9 +456,10 @@ export const DetailsLink = styled(Link)`
   gap: 12px;
   min-height: 42px;
   padding: 0 13px;
-  border: 1px solid #dbe0e3;
-  border-radius: 7px;
-  color: #263d55;
+  border: 1px solid #dce6df;
+  border-radius: 10px;
+  background: #f1f6f2;
+  color: #214e3d;
   text-decoration: none;
   font-size: 11px;
   font-weight: 700;
@@ -442,8 +476,8 @@ export const DetailsLink = styled(Link)`
   }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     &:hover {
-      background: #1f2f49;
-      border-color: #1f2f49;
+      background: #193c33;
+      border-color: #193c33;
       color: white;
     }
   }
@@ -483,7 +517,7 @@ export const CatalogEnd = styled('footer')`
 export const DetailPage = styled('main')`
   max-width: 1200px;
   margin: auto;
-  padding: 40px 24px;
+  padding: 40px 24px 80px;
 `
 
 export const BackLink = styled(Link)`
@@ -507,7 +541,8 @@ export const Detail = styled('article')`
   & img {
     width: 100%;
     height: auto;
-    border-radius: 14px;
+    border-radius: 20px;
+    box-shadow: 0 18px 45px #1b332d18;
   }
   & h1 {
     text-align: right;

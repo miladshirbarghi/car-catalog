@@ -1,0 +1,64 @@
+import CarCard from '@components/card/CarCard'
+import CatalogControls from '@components/catalog/CatalogControls'
+import CatalogHeader from '@components/catalog/CatalogHeader'
+import CatalogIntro from '@components/catalog/CatalogIntro'
+import {
+  CarGrid,
+  CatalogContainer,
+  Collection,
+  CollectionHeading,
+  EmptyState,
+  SectionLabel,
+} from '@components/catalog/catalog.styled'
+import { useCatalog } from '@hooks/useCatalog'
+
+export default function Catalog() {
+  const {
+    form,
+    cars,
+    favorites,
+    favoritesOnly,
+    setFavoritesOnly,
+    toggleFavorite,
+  } = useCatalog()
+  return (
+    <CatalogContainer>
+      <CatalogHeader />
+      <CatalogIntro />
+      <Collection>
+        <CollectionHeading>
+          <div>
+            <SectionLabel>مجموعه خودروها</SectionLabel>
+            <h2>
+              خودروها{' '}
+              <small>
+                {new Intl.NumberFormat('fa-IR').format(cars.length)} خودرو
+              </small>
+            </h2>
+          </div>
+          <CatalogControls
+            form={form}
+            favoritesOnly={favoritesOnly}
+            onFavoritesOnlyChange={setFavoritesOnly}
+            favoritesCount={favorites.length}
+          />
+        </CollectionHeading>
+        {cars.length ? (
+          <CarGrid>
+            {cars.map((car, index) => (
+              <CarCard
+                key={car.id}
+                car={car}
+                isFavorite={favorites.includes(car.id)}
+                onToggleFavorite={toggleFavorite}
+                eager={index === 0}
+              />
+            ))}
+          </CarGrid>
+        ) : (
+          <EmptyState role='status'>خودرویی با این مشخصات پیدا نشد.</EmptyState>
+        )}
+      </Collection>
+    </CatalogContainer>
+  )
+}

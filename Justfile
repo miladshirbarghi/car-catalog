@@ -12,6 +12,9 @@ dev:
 build:
     pnpm build
 
+build-start: build
+    pnpm preview
+
 lint:
     pnpm lint
 

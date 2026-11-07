@@ -21,6 +21,9 @@ export default defineConfig({
       '@styles': fileURLToPath(new URL('./src/styles', import.meta.url)),
       '@app-types': fileURLToPath(new URL('./src/types', import.meta.url)),
       '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
+      '@validations': fileURLToPath(
+        new URL('./src/validations', import.meta.url)
+      ),
     },
   },
 })

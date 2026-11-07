@@ -22,9 +22,9 @@ export default function CatalogIntro() {
         </CatalogDescription>
       </Box>
       <IntroSide>
-        <Box component='span'>THE COLLECTION</Box>
+        <Box component='span'>CURATED COLLECTION</Box>
         <Box component='strong'>
-          01 <Box component='i'>/</Box> 10
+          AUTO <Box component='i'>/</Box> GALLERY
         </Box>
         <Box component='p'>
           با دقت انتخاب شده،
