@@ -10,6 +10,8 @@ import {
 
 type Props = {
   form: ReturnType<typeof useCatalog>['form']
+  updatePriceInUrl: ReturnType<typeof useCatalog>['updatePriceInUrl']
+  invalidPriceInput: ReturnType<typeof useCatalog>['invalidPriceInput']
   favoritesOnly: boolean
   onFavoritesOnlyChange: (value: boolean) => void
   favoritesCount: number
@@ -17,6 +19,8 @@ type Props = {
 
 export default function CatalogControls({
   form,
+  updatePriceInUrl,
+  invalidPriceInput,
   favoritesOnly,
   onFavoritesOnlyChange,
   favoritesCount,
@@ -69,8 +73,19 @@ export default function CatalogControls({
           size='small'
           inputRef={minPriceRef}
           {...minPrice}
-          error={!!errors.minPrice}
-          helperText={errors.minPrice?.message}
+          onChange={event => {
+            event.target.value = updatePriceInUrl(
+              'minPrice',
+              event.target.value
+            )
+            void minPrice.onChange(event)
+          }}
+          error={invalidPriceInput.minPrice || !!errors.minPrice}
+          helperText={
+            invalidPriceInput.minPrice
+              ? 'فقط عدد وارد کنید.'
+              : errors.minPrice?.message
+          }
           slotProps={{ htmlInput: { inputMode: 'numeric' } }}
         />
         <TextField
@@ -79,8 +94,19 @@ export default function CatalogControls({
           size='small'
           inputRef={maxPriceRef}
           {...maxPrice}
-          error={!!errors.maxPrice}
-          helperText={errors.maxPrice?.message}
+          onChange={event => {
+            event.target.value = updatePriceInUrl(
+              'maxPrice',
+              event.target.value
+            )
+            void maxPrice.onChange(event)
+          }}
+          error={invalidPriceInput.maxPrice || !!errors.maxPrice}
+          helperText={
+            invalidPriceInput.maxPrice
+              ? 'فقط عدد وارد کنید.'
+              : errors.maxPrice?.message
+          }
           slotProps={{ htmlInput: { inputMode: 'numeric' } }}
         />
         <TextField

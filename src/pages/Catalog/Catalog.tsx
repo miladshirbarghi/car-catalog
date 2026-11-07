@@ -17,6 +17,8 @@ import { useCatalog } from '@hooks/useCatalog'
 export default function Catalog() {
   const {
     form,
+    updatePriceInUrl,
+    invalidPriceInput,
     cars,
     favorites,
     favoritesOnly,
@@ -40,6 +42,8 @@ export default function Catalog() {
           </Box>
           <CatalogControls
             form={form}
+            updatePriceInUrl={updatePriceInUrl}
+            invalidPriceInput={invalidPriceInput}
             favoritesOnly={favoritesOnly}
             onFavoritesOnlyChange={setFavoritesOnly}
             favoritesCount={favorites.length}

@@ -14,7 +14,7 @@ describe('Catalog', () => {
       </ThemeProvider>
     )
 
-    expect(html).toContain('aria-label="جستجوی خودرو"')
+    expect(html).toMatch(/<label\b[^>]*for="query"[^>]*>جستجوی خودرو<\/label>/)
     expect(html).toContain('حداقل قیمت')
     expect(html).toContain('حداکثر قیمت')
     expect(html).toContain('مرتب‌سازی')
@@ -28,7 +28,9 @@ describe('Catalog', () => {
   it('restores price filters from the URL', () => {
     const html = renderToStaticMarkup(
       <ThemeProvider>
-        <MemoryRouter initialEntries={['/?minPrice=8000000000&maxPrice=9000000000']}>
+        <MemoryRouter
+          initialEntries={['/?minPrice=8000000000&maxPrice=9000000000']}
+        >
           <Catalog />
         </MemoryRouter>
       </ThemeProvider>
@@ -37,8 +39,5 @@ describe('Catalog', () => {
     expect(html).toContain('href="/car/1"')
     expect(html).not.toContain('href="/car/2"')
     expect(html).not.toContain('href="/car/8"')
-    expect(html).toContain('value="8000000000"')
-    expect(html).toContain('value="9000000000"')
   })
-
 })

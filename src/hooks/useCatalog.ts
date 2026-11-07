@@ -19,7 +19,12 @@ export function useCatalog() {
   const urlMinPrice = priceFromUrl(searchParams.get('minPrice'))
   const urlMaxPrice = priceFromUrl(searchParams.get('maxPrice'))
   const form = useForm<CatalogFields>({
-    defaultValues: { query: '', minPrice: urlMinPrice, maxPrice: urlMaxPrice, sort: 'default' },
+    defaultValues: {
+      query: '',
+      minPrice: urlMinPrice,
+      maxPrice: urlMaxPrice,
+      sort: 'default',
+    },
     resolver: catalogResolver,
     mode: 'onChange',
   })
@@ -32,11 +37,23 @@ export function useCatalog() {
     setValue('maxPrice', urlMaxPrice, { shouldValidate: true })
   }, [setValue, urlMinPrice, urlMaxPrice])
 
-  function updatePriceInUrl(name: 'minPrice' | 'maxPrice', value: string) {
+  const [invalidPriceInput, setInvalidPriceInput] = useState({
+    minPrice: false,
+    maxPrice: false,
+  })
+
+  function updatePriceInUrl(name: 'minPrice' | 'maxPrice', input: string) {
+    const normalized = normalizeDigits(input)
+    const value = normalized.replace(/[^0-9]/g, '')
+    setInvalidPriceInput(current => ({
+      ...current,
+      [name]: normalized !== value,
+    }))
     const next = new URLSearchParams(searchParams)
     if (value) next.set(name, normalizeDigits(value))
     else next.delete(name)
     setSearchParams(next, { replace: true, preventScrollReset: true })
+    return value
   }
 
   const [favorites, setFavorites] = useState<number[]>([])
@@ -78,6 +95,7 @@ export function useCatalog() {
   return {
     form,
     updatePriceInUrl,
+    invalidPriceInput,
     favorites,
     favoritesOnly,
     setFavoritesOnly,
