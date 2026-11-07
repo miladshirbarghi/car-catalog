@@ -1,8 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
-import App from './App.tsx'
-import './index.css'
+import App from './app/App.tsx'
+import './styles/index.css'
 
 const theme = createTheme({
   direction: 'rtl',

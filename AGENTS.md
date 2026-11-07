@@ -26,7 +26,7 @@ Persian, RTL, mobile-first installment-car catalog. The current app is a Vite Re
 Git hooks enforce the quality gates:
 
 - Pre-commit runs `lint-staged`: ESLint with zero warnings and Prettier on staged JS/TS, plus Prettier on staged supported text files.
-- Pre-push runs `pnpm check`, which stops on the first failure and runs TypeScript (`pnpm exec tsc -b --pretty false`), `pnpm lint`, `pnpm format:check`, `pnpm test`, and the Vite production build.
+- Pre-push runs `pnpm check`, which stops on the first failure and runs TypeScript (`pnpm exec tsc -b --pretty false`), `pnpm lint`, `pnpm format:check`, and the Vite production build. Tests are run separately with `pnpm test` when requested.
 - Run `pnpm check` before delivery. `pnpm build` remains available for a standalone production build and includes TypeScript project checks.
 
 Run checks relevant to the change. Report exact commands, results, and blockers. Never claim unrun checks passed.

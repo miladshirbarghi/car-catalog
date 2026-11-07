@@ -22,7 +22,7 @@ just check
 just build
 ```
 
-`check` runs TypeScript, ESLint, Prettier, Vitest, and the production Vite build in sequence. Git runs ESLint and Prettier on staged files before commits, then runs `pnpm check` before pushes. Node 26.13.0 is pinned in `.nvmrc`; pnpm 10.24.0 is pinned in `package.json`.
+`check` runs TypeScript, ESLint, Prettier, and the production Vite build in sequence. Run `pnpm test` separately when you want to run Vitest. Git runs ESLint and Prettier on staged files before commits, then runs `pnpm check` before pushes. Node 26.13.0 is pinned in `.nvmrc`; pnpm 10.24.0 is pinned in `package.json`.
 
 ## Agent guidance
 
