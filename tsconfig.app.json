@@ -6,6 +6,7 @@
     "module": "esnext",
     "paths": {
       "@assets/*": ["./assets/*"],
+      "@mocks/*": ["./src/mocks/*"],
       "@app/*": ["./src/app/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@providers/*": ["./src/providers/*"],
