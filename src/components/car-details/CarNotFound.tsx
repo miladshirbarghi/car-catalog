@@ -1,5 +1,5 @@
 import { EmptyState } from '@components/catalog/catalog.styled'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 
 export function CarNotFound() {
   return (

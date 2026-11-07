@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import CarCard from '@components/card/CarCard'
 import CatalogControls from '@components/catalog/CatalogControls'
 import CatalogHeader from '@components/catalog/CatalogHeader'

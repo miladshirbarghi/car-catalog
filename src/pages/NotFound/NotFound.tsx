@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { BackToCatalog } from '@components/car-details/BackToCatalog'
 import { DetailPage, EmptyState } from '@components/catalog/catalog.styled'
 

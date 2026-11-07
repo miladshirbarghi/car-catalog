@@ -99,6 +99,17 @@ export default defineConfig([
     },
     rules: {
       'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: '@mui/material',
+              message: 'Import from the specific @mui/material module instead.',
+            },
+          ],
+        },
+      ],
     },
   },
   {

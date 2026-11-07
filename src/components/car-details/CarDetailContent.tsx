@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import type { Car } from '@app-types/car.type'
 import { useCarImage } from '@hooks/useCarImage'
 import { CarDescription } from './CarDescription'

@@ -1,6 +1,6 @@
 import { layoutBreakpoints } from '@styles/breakpoints'
 import { catalogColors } from '@styles/pallete'
-import { styled } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { Link } from 'react-router'
 
 export const DetailPage = styled('main')`

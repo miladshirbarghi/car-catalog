@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { motion, useReducedMotion } from 'motion/react'
 import { Heart } from 'lucide-react'
 import type { Car } from '@app-types/car.type'
