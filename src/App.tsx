@@ -1,5 +1,3 @@
 export default function App() {
-  return (
-    <div>تست</div>
-  )
+  return <div>تست</div>
 }

@@ -1,9 +1,11 @@
 # Repository agent guide
 
 ## Context
+
 Persian, RTL, mobile-first installment-car catalog. The current app is a Vite React + TypeScript starter with only a placeholder screen; catalog requirements remain future work. Preserve existing work and keep this assignment small.
 
 ## Technology and architecture
+
 - Preserve React 19, TypeScript, Vite, MUI/Emotion, the React Compiler, IRANSansX, and current RTL setup.
 - Follow the compiler options that exist; `strict: true` is not currently set, so do not describe the project as strict-mode checked.
 - Prefer a small feature-oriented structure only as features are added. Keep dependencies flowing simply; no service/repository layers, global state, or new dependencies without a concrete need and user approval.
@@ -11,6 +13,7 @@ Persian, RTL, mobile-first installment-car catalog. The current app is a Vite Re
 - Do not implement speculative features or the entire app during a task scoped to engineering guidance.
 
 ## Skill discovery and selection
+
 - Local skills live in `.agents/skills/<name>/SKILL.md`. Read the focused skill when its description matches the task; combine only skills that add distinct guidance.
 - For a component refactor, start with `component-composition`; add `react-typescript` for hook/type/state changes and `ui-ux-accessibility` for user-facing behavior.
 - For interactive catalog state, use `ui-state-management` and `react-typescript`; add `ui-ux-accessibility` and `testing-and-quality` when relevant.
@@ -19,16 +22,17 @@ Persian, RTL, mobile-first installment-car catalog. The current app is a Vite Re
 - Use `pragmatic-engineering` or `solid-clean-code` only when an actual abstraction/boundary decision benefits from them. `communication-conventions` applies to reports, not code.
 
 ## Quality gate
-Use available commands, in order:
-1. Typecheck: `pnpm exec tsc -b --pretty false` (no dedicated script currently).
-2. Lint: `pnpm lint`.
-3. Format check: no format script is currently defined; do not claim it ran.
-4. Tests: no test script/tooling is currently configured; add tests only with task approval for dependencies when needed.
-5. Production build: `pnpm build` (also runs `tsc -b`).
+
+Git hooks enforce the quality gates:
+
+- Pre-commit runs `lint-staged`: ESLint with zero warnings and Prettier on staged JS/TS, plus Prettier on staged supported text files.
+- Pre-push runs `pnpm check`, which stops on the first failure and runs TypeScript (`pnpm exec tsc -b --pretty false`), `pnpm lint`, `pnpm format:check`, `pnpm test`, and the Vite production build.
+- Run `pnpm check` before delivery. `pnpm build` remains available for a standalone production build and includes TypeScript project checks.
 
 Run checks relevant to the change. Report exact commands, results, and blockers. Never claim unrun checks passed.
 
 ## Definition of Done
+
 - Requirements and existing conventions are respected; no unrelated source/config changes.
 - Types, states, accessible behavior, and error/empty paths are handled where applicable.
 - Relevant available quality checks run and results are reported honestly.
@@ -36,6 +40,7 @@ Run checks relevant to the change. Report exact commands, results, and blockers.
 - Diff is reviewable; propose small Conventional Commits and never push automatically.
 
 ## Dependency and scope policy
+
 - Inspect existing packages/scripts first. Do not install packages, run remote scripts, or modify global agent settings without explicit approval.
 - Prefer native APIs and installed tooling. Avoid speculative abstractions, infrastructure, or quality metrics.
 - Preserve user changes, including pre-existing unstaged changes and deletions.
