@@ -1,21 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import App from './app/App.tsx'
 import './styles/index.css'
 
-const theme = createTheme({
-  direction: 'rtl',
-  typography: {
-    fontFamily: 'IRANSansX, sans-serif',
-  },
-})
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <App />
   </StrictMode>
 )

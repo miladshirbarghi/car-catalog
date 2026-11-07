@@ -1,3 +1,10 @@
+import AppRoutes from './providers/AppRoutes'
+import ThemeProvider from './providers/ThemeProvider'
+
 export default function App() {
-  return <div>تست</div>
+  return (
+    <ThemeProvider>
+      <AppRoutes />
+    </ThemeProvider>
+  )
 }
