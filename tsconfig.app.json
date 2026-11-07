@@ -6,11 +6,16 @@
     "module": "esnext",
     "paths": {
       "@assets/*": ["./assets/*"],
-      "@mocks/*": ["./src/mocks/*"],
       "@app/*": ["./src/app/*"],
+      "@components/*": ["./src/components/*"],
+      "@features/*": ["./src/features/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@mock/*": ["./src/mock/*"],
+      "@pages/*": ["./src/pages/*"],
       "@providers/*": ["./src/providers/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@styles/*": ["./src/styles/*"],
+      "@app-types/*": ["./src/types/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "types": ["vite/client"],
     "allowArbitraryExtensions": true,

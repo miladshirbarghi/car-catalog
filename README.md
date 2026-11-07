@@ -1,6 +1,13 @@
 # Car Catalog
 
-A Persian, RTL, mobile-first catalog for cars sold through installments. The repository currently contains the Vite/React starter and an app placeholder; catalog features are not implemented yet.
+A Persian, RTL, mobile-first catalog for cars sold through installments. The current client-side catalog uses local mock data for its listing and car details.
+
+## Structure
+
+- `src/app` and `src/providers`: application entry and providers.
+- `src/features/catalog`: catalog pages, components, hooks, styles, and mock data.
+- `src/hooks` and `src/styles`: shared hooks and application-wide styles.
+- `assets`: fonts and images.
 
 ## Stack
 

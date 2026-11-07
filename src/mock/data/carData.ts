@@ -8,8 +8,9 @@ import lexusImage from '@assets/images/7.png'
 import porscheImage from '@assets/images/8.png'
 import volkswagenImage from '@assets/images/9.png'
 import nissanImage from '@assets/images/10.png'
+import type { Car } from '@app-types/car.type'
 
-export const carData = [
+export const carData: Car[] = [
   {
     id: 1,
     brand: 'BMW',
