@@ -31,6 +31,8 @@ just build
 
 `check` runs TypeScript, ESLint, Prettier, and the production Vite build in sequence. Run `pnpm test` separately when you want to run Vitest. Git runs ESLint and Prettier on staged files before commits, then runs `pnpm check` before pushes. Node 26.13.0 is pinned in `.nvmrc`; pnpm 10.24.0 is pinned in `package.json`.
 
+In VS Code, install the Prettier extension (`esbenp.prettier-vscode`) to format files on save. ESLint also reports consecutive blank lines in JavaScript and TypeScript files.
+
 ## Agent guidance
 
 Read [AGENTS.md](AGENTS.md) for repository-wide conventions and quality gates. Focused skills are in `.agents/skills/`. See [DECISIONS.md](DECISIONS.md) for project assumptions and scope.

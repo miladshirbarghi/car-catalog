@@ -90,21 +90,43 @@ const adjacentRelativeImports = {
 }
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'dist-ssr', 'coverage']),
   {
     files: ['**/*.{js,jsx,cjs,mjs,ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      globals: { ...globals.browser, ...globals.node },
+    extends: [js.configs.recommended],
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
+    },
+    rules: {
+      'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
     },
   },
   {
-    files: ['src/**/*.{js,jsx,cjs,mjs,ts,tsx}'],
+    files: ['**/*.{ts,tsx}'],
+    extends: [tseslint.configs.recommended],
+    rules: {
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { prefer: 'type-imports', fixStyle: 'separate-type-imports' },
+      ],
+    },
+  },
+  {
+    files: ['src/**/*.{ts,tsx}'],
+    extends: [tseslint.configs.recommendedTypeChecked],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    extends: [reactHooks.configs.flat.recommended, reactRefresh.configs.vite],
+    languageOptions: {
+      globals: globals.browser,
+    },
     plugins: {
       local: {
         rules: {
@@ -114,6 +136,12 @@ export default defineConfig([
     },
     rules: {
       'local/adjacent-relative-imports': 'error',
+    },
+  },
+  {
+    files: ['*.{js,cjs,mjs,ts}'],
+    languageOptions: {
+      globals: globals.node,
     },
   },
 ])
