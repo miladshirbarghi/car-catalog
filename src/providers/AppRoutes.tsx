@@ -1,6 +1,7 @@
 import CarDetails from '@pages/CarDetails/CarDetails'
-import Catalog from '@pages/catalog/Catalog'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
+import Catalog from '@pages/Catalog/Catalog'
+import NotFound from '@pages/NotFound/NotFound'
+import { BrowserRouter, Route, Routes } from 'react-router'
 
 export default function AppRoutes() {
   return (
@@ -8,7 +9,7 @@ export default function AppRoutes() {
       <Routes>
         <Route path='/' element={<Catalog />} />
         <Route path='/car/:id' element={<CarDetails />} />
-        <Route path='*' element={<Navigate to='/' replace />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

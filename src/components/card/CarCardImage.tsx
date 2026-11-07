@@ -11,7 +11,7 @@ type Props = {
   eager: boolean
 }
 
-const number = new Intl.NumberFormat('fa-IR')
+const number = new Intl.NumberFormat('fa-IR', { useGrouping: false })
 
 export default function CarCardImage({
   car,

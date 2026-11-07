@@ -7,6 +7,7 @@ import { CatalogStyles } from '@features/catalog/styles/CatalogStyles'
 export default function CarDetails() {
   const car = useCarDetails()
   const number = new Intl.NumberFormat('fa-IR')
+  const year = new Intl.NumberFormat('fa-IR', { useGrouping: false })
   return (
     <CatalogStyles>
       <Box component='main' className='detail-page'>
@@ -32,7 +33,7 @@ export default function CarDetails() {
               <Box component='dl'>
                 <Box component='div'>
                   <Box component='dt'>مدل</Box>
-                  <Box component='dd'>{number.format(car.year)}</Box>
+                  <Box component='dd'>{year.format(car.year)}</Box>
                 </Box>
                 <Box component='div'>
                   <Box component='dt'>کارکرد</Box>
