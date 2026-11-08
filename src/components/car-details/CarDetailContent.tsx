@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import ImageSkeleton from '@components/shared/ImageSkeleton'
 import type { Car } from '@app-types/car.type'
 import { useCarImage } from '@hooks/useCarImage'
 import { CarDescription } from './CarDescription'
@@ -21,7 +22,13 @@ const number = new Intl.NumberFormat('fa-IR')
 const year = new Intl.NumberFormat('fa-IR', { useGrouping: false })
 
 export function CarDetailContent({ car }: CarDetailContentProps) {
-  const { imageFailed, handleImageError } = useCarImage()
+  const {
+    imageLoading,
+    imageFailed,
+    handleImageLoad,
+    handleImageError,
+    imageRef,
+  } = useCarImage(car.image)
 
   return (
     <Detail>
@@ -37,13 +44,17 @@ export function CarDetailContent({ car }: CarDetailContentProps) {
           ) : (
             <Box
               component='img'
+              ref={imageRef}
               src={car.image}
+              onLoad={handleImageLoad}
+              style={{ opacity: imageLoading ? 0 : 1 }}
               alt={`${car.brand} ${car.model} مدل ${year.format(car.year)}`}
               width='1448'
               height='1086'
               onError={handleImageError}
             />
           )}
+          {imageLoading && <ImageSkeleton />}
           <Box component='span'>مدل {year.format(car.year)}</Box>
         </DetailImage>
         <DetailSummary>

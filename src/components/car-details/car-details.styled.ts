@@ -56,7 +56,7 @@ export const DetailImage = styled('div')`
     inset: 0;
     object-fit: cover;
   }
-  & > div {
+  & > div[role='img'] {
     height: 100%;
     min-height: 390px;
     display: grid;
@@ -77,7 +77,7 @@ export const DetailImage = styled('div')`
   ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.detail)} {
     min-height: 0;
     aspect-ratio: 4 / 3;
-    & > div {
+    & > div[role='img'] {
       min-height: 0;
     }
   }

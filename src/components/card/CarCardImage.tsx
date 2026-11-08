@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import ImageSkeleton from '@components/shared/ImageSkeleton'
 import { motion, useReducedMotion } from 'motion/react'
 import { Heart } from 'lucide-react'
 import type { Car } from '@app-types/car.type'
@@ -26,7 +27,13 @@ export default function CarCardImage({
   onToggleFavorite,
   eager,
 }: Props) {
-  const { imageFailed, handleImageError } = useCarImage()
+  const {
+    imageLoading,
+    imageFailed,
+    handleImageLoad,
+    handleImageError,
+    imageRef,
+  } = useCarImage(car.image)
   const reducedMotion = useReducedMotion()
 
   return (
@@ -40,7 +47,10 @@ export default function CarCardImage({
         </CardFallback>
       ) : (
         <CardImage
+          ref={imageRef}
           src={car.image}
+          onLoad={handleImageLoad}
+          style={{ opacity: imageLoading ? 0 : 1 }}
           alt={`${car.brand} ${car.model} مدل ${car.year}`}
           width='1448'
           height='1086'
@@ -48,6 +58,7 @@ export default function CarCardImage({
           onError={handleImageError}
         />
       )}
+      {imageLoading && <ImageSkeleton />}
       <CardYear>{number.format(car.year)}</CardYear>
       <FavoriteButton
         type='button'
