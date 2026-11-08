@@ -31,11 +31,16 @@ export function useCatalog() {
   const { query, minPrice, maxPrice, sort } = useWatch({
     control: form.control,
   }) as CatalogFields
-  const { setValue } = form
+  const { getValues, setValue } = form
   useEffect(() => {
-    setValue('minPrice', urlMinPrice, { shouldValidate: true })
-    setValue('maxPrice', urlMaxPrice, { shouldValidate: true })
-  }, [setValue, urlMinPrice, urlMaxPrice])
+    // URL navigation may change the fields, but local edits already updated them.
+    if (getValues('minPrice') !== urlMinPrice) {
+      setValue('minPrice', urlMinPrice, { shouldValidate: true })
+    }
+    if (getValues('maxPrice') !== urlMaxPrice) {
+      setValue('maxPrice', urlMaxPrice, { shouldValidate: true })
+    }
+  }, [getValues, setValue, urlMinPrice, urlMaxPrice])
 
   const [invalidPriceInput, setInvalidPriceInput] = useState({
     minPrice: false,
@@ -45,14 +50,16 @@ export function useCatalog() {
   function updatePriceInUrl(name: 'minPrice' | 'maxPrice', input: string) {
     const normalized = normalizeDigits(input)
     const value = normalized.replace(/[^0-9]/g, '')
-    setInvalidPriceInput(current => ({
-      ...current,
-      [name]: normalized !== value,
-    }))
+    const invalid = normalized !== value
+    setInvalidPriceInput(current =>
+      current[name] === invalid ? current : { ...current, [name]: invalid }
+    )
     const next = new URLSearchParams(searchParams)
     if (value) next.set(name, normalizeDigits(value))
     else next.delete(name)
-    setSearchParams(next, { replace: true, preventScrollReset: true })
+    if (next.toString() !== searchParams.toString()) {
+      setSearchParams(next, { replace: true, preventScrollReset: true })
+    }
     return value
   }
 
@@ -68,14 +75,17 @@ export function useCatalog() {
   const max = maxPrice.trim()
     ? Number(normalizeDigits(maxPrice.trim()))
     : Infinity
+  const normalizedQuery = normalizeDigits(query.trim()).toLowerCase()
   const cars = carData.filter(car => {
     const matches = `${car.brand} ${car.model} ${car.year}`
       .toLowerCase()
-      .includes(query.trim().toLowerCase())
+      .includes(normalizedQuery)
     return (
       matches &&
       (!favoritesOnly || favorites.includes(car.id)) &&
-      (!validPrices || (car.price >= min && car.price <= max))
+      validPrices &&
+      car.price >= min &&
+      car.price <= max
     )
   })
   if (sort !== 'default') {
@@ -96,6 +106,7 @@ export function useCatalog() {
     form,
     updatePriceInUrl,
     invalidPriceInput,
+    invalidPriceRange: !validPrices,
     favorites,
     favoritesOnly,
     setFavoritesOnly,

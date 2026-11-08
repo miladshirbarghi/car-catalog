@@ -3,6 +3,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import type { useCatalog } from '@hooks/useCatalog'
 import { Heart, Search } from 'lucide-react'
+import { useFormState } from 'react-hook-form'
 import {
   Controls,
   FilterButton,
@@ -27,10 +28,8 @@ export default function CatalogControls({
   onFavoritesOnlyChange,
   favoritesCount,
 }: Props) {
-  const {
-    register,
-    formState: { errors },
-  } = form
+  const { register, control } = form
+  const { errors } = useFormState({ control })
   const { ref, ...query } = register('query')
   const { ref: minPriceRef, ...minPrice } = register('minPrice', {
     deps: 'maxPrice',

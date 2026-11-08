@@ -16,6 +16,8 @@
 
 ### بررسی کیفیت و راهنمای محلی
 
+تصاویر مصرفی برنامه نسخه‌های WebP با ابعاد اصلی و کیفیت ۸۲٪ هستند؛ PNGهای اصلی برای ویرایش بعدی نگه داشته شده‌اند و در بیلد وارد نمی‌شوند. مجموع حجم تصاویر از ۲۵٫۷۹ به ۱٫۹۸ مگابایت کاهش یافته است. همگام‌سازی URL فقط مقادیر تغییرکرده فرم را به‌روز می‌کند و کنترل‌ها مستقلاً خطاهای فرم را دریافت می‌کنند. بازه قیمت نامعتبر به‌جای نمایش همه خودروها پیام خطا نشان می‌دهد. React Compiler و StrictMode حفظ شده‌اند؛ تعداد رندرها با Profiler اندازه‌گیری نشده است.
+
 `pnpm check` بررسی نوع‌ها، lint، قالب‌بندی و بیلد را اجرا می‌کند و تست‌ها جداگانه اجرا می‌شوند. تنظیمات TypeScript گزینه `strict: true` را فعال نکرده‌اند. راهنمای مخزن و skillهای محلی در [AGENTS.md](AGENTS.md) و `.agents/skills` قرار دارند؛ Graphify اختیاری است و در نبود آن کد مستقیماً بررسی می‌شود.
 
 ## English
@@ -33,5 +35,7 @@ Interaction logic lives in hooks. Search, sorting, and favorites use local state
 The catalog page is part of the initial load; the details and unknown-route pages use `React.lazy` with a shared loading state. The first card image loads eagerly and the remaining card images load lazily. ESLint disallows imports from the `@mui/material` root; use direct paths or the appropriate subpath, such as `@mui/material/styles`.
 
 ### Quality checks and local guidance
+
+The app uses WebP copies at original dimensions and 82% encoding quality; original PNGs remain available for future editing and are excluded from the build. Total image size decreased from 25.79 to 1.98 MB. URL synchronization only updates changed form values, and controls subscribe to form errors independently. Invalid price ranges show an error instead of returning every car. React Compiler and StrictMode remain enabled; render counts have not been measured with the Profiler.
 
 `pnpm check` runs type checking, linting, formatting checks, and the build; tests run separately. The TypeScript configuration does not enable `strict: true`. Repository guidance and local skills are in [AGENTS.md](AGENTS.md) and `.agents/skills`; Graphify is optional and source inspection is the fallback.

@@ -19,6 +19,7 @@ export default function Catalog() {
     form,
     updatePriceInUrl,
     invalidPriceInput,
+    invalidPriceRange,
     cars,
     favorites,
     favoritesOnly,
@@ -62,7 +63,11 @@ export default function Catalog() {
             ))}
           </CarGrid>
         ) : (
-          <EmptyState role='status'>خودرویی با این مشخصات پیدا نشد.</EmptyState>
+          <EmptyState role='status'>
+            {invalidPriceRange
+              ? 'بازه قیمت معتبر نیست؛ حداقل و حداکثر قیمت را بررسی کنید.'
+              : 'خودرویی با این مشخصات پیدا نشد.'}
+          </EmptyState>
         )}
       </Collection>
       <CatalogEnd>

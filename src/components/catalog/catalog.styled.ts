@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField'
 import { styled } from '@mui/material/styles'
 import { motion } from 'motion/react'
 import { Link } from 'react-router'
-import heroImage from '@assets/images/1.png'
+import heroImage from '@assets/images/1.webp'
 
 export const CatalogContainer = styled('main')`
   max-width: 1536px;

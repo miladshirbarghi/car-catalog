@@ -9,7 +9,7 @@ export default function CarDetails() {
   return (
     <DetailPage>
       <BackToCatalog />
-      {car ? <CarDetailContent car={car} /> : <CarNotFound />}
+      {car ? <CarDetailContent key={car.id} car={car} /> : <CarNotFound />}
     </DetailPage>
   )
 }
