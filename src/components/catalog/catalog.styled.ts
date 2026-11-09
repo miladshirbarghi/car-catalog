@@ -229,14 +229,16 @@ export const PriceControls = styled('div')`
   flex: 3 1 0;
   min-width: 0;
   gap: 12px;
-  & > .MuiFormControl-root {
+  & > .MuiFormControl-root,
+  & > .MuiAutocomplete-root {
     flex: 1 1 0;
     min-width: 0;
   }
   ${({ theme }) => theme.breakpoints.down(layoutBreakpoints.mobile)} {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    & > .MuiFormControl-root:last-child {
+    & > .MuiFormControl-root:last-child,
+    & > .MuiAutocomplete-root:last-child {
       grid-column: 1 / -1;
     }
   }

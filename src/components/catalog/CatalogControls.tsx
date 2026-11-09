@@ -1,9 +1,12 @@
+import Autocomplete from '@mui/material/Autocomplete'
 import Box from '@mui/material/Box'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import type { useCatalog } from '@hooks/useCatalog'
 import { Heart, Search } from 'lucide-react'
-import { useFormState } from 'react-hook-form'
+import { Controller, useFormState } from 'react-hook-form'
+import type { CatalogFields } from '@validations/catalog.validation'
+import CatalogPriceField from './CatalogPriceField'
 import {
   Controls,
   FilterButton,
@@ -20,6 +23,17 @@ type Props = {
   favoritesCount: number
 }
 
+type SortOption = {
+  value: CatalogFields['sort']
+  label: string
+}
+
+const sortOptions = [
+  { value: 'default', label: 'پیش‌فرض' },
+  { value: 'ascending', label: 'ارزان‌ترین' },
+  { value: 'descending', label: 'گران‌ترین' },
+] satisfies readonly SortOption[]
+
 export default function CatalogControls({
   form,
   updatePriceInUrl,
@@ -35,7 +49,6 @@ export default function CatalogControls({
     deps: 'maxPrice',
   })
   const { ref: maxPriceRef, ...maxPrice } = register('maxPrice')
-  const { ref: sortRef, ...sort } = register('sort')
   return (
     <Controls>
       <SearchRoot
@@ -68,68 +81,47 @@ export default function CatalogControls({
         )}
       </FilterButton>
       <PriceControls>
-        <TextField
+        <CatalogPriceField
           id='min-price'
           label='حداقل قیمت'
-          size='small'
-          inputRef={minPriceRef}
-          {...minPrice}
-          onChange={event => {
-            event.target.value = updatePriceInUrl(
-              'minPrice',
-              event.target.value
-            )
-            void minPrice.onChange(event)
-          }}
-          error={invalidPriceInput.minPrice || !!errors.minPrice}
-          helperText={
-            invalidPriceInput.minPrice
-              ? 'فقط عدد وارد کنید.'
-              : errors.minPrice?.message
-          }
-          slotProps={{ htmlInput: { inputMode: 'numeric' } }}
+          name='minPrice'
+          registration={{ ref: minPriceRef, ...minPrice }}
+          invalidInput={invalidPriceInput.minPrice}
+          error={errors.minPrice}
+          onPriceChange={updatePriceInUrl}
         />
-        <TextField
+        <CatalogPriceField
           id='max-price'
           label='حداکثر قیمت'
-          size='small'
-          inputRef={maxPriceRef}
-          {...maxPrice}
-          onChange={event => {
-            event.target.value = updatePriceInUrl(
-              'maxPrice',
-              event.target.value
-            )
-            void maxPrice.onChange(event)
-          }}
-          error={invalidPriceInput.maxPrice || !!errors.maxPrice}
-          helperText={
-            invalidPriceInput.maxPrice
-              ? 'فقط عدد وارد کنید.'
-              : errors.maxPrice?.message
-          }
-          slotProps={{ htmlInput: { inputMode: 'numeric' } }}
+          name='maxPrice'
+          registration={{ ref: maxPriceRef, ...maxPrice }}
+          invalidInput={invalidPriceInput.maxPrice}
+          error={errors.maxPrice}
+          onPriceChange={updatePriceInUrl}
         />
-        <TextField
-          id='sort'
-          select
-          label='مرتب‌سازی'
-          size='small'
-          defaultValue='default'
-          inputRef={sortRef}
-          {...sort}
-          slotProps={{ select: { native: true } }}
-        >
-          <Box component='option' value='default'>
-            پیش‌فرض
-          </Box>
-          <Box component='option' value='ascending'>
-            ارزان‌ترین
-          </Box>
-          <Box component='option' value='descending'>
-            گران‌ترین
-          </Box>
-        </TextField>
+        <Controller
+          name='sort'
+          control={control}
+          render={({ field }) => (
+            <Autocomplete
+              id='sort'
+              options={sortOptions}
+              value={
+                sortOptions.find(option => option.value === field.value) ??
+                sortOptions[0]
+              }
+              getOptionLabel={option => option.label}
+              onChange={(_, option) =>
+                field.onChange(option?.value ?? 'default')
+              }
+              onBlur={field.onBlur}
+              disableClearable
+              renderInput={params => (
+                <TextField {...params} label='مرتب‌سازی' size='small' />
+              )}
+            />
+          )}
+        />
       </PriceControls>
     </Controls>
   )

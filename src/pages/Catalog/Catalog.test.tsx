@@ -49,9 +49,7 @@ describe('Catalog', () => {
     expect(html).toContain('حداقل قیمت')
     expect(html).toContain('حداکثر قیمت')
     expect(html).toContain('مرتب‌سازی')
-    expect(html).toMatch(
-      /<option\b[^>]*value="ascending"[^>]*>ارزان‌ترین<\/option>/
-    )
+    expect(html).toMatch(/<input\b[^>]*role="combobox"[^>]*>/)
     expect(html).toContain('aria-pressed="false"')
     expect(html).toContain('href="/car/1"')
   })
